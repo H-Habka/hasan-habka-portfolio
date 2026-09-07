@@ -1,0 +1,35 @@
+{
+  "files": {
+    "main.css": "/hasan-habka-portfolio/static/css/main.95637bb4.css",
+    "main.js": "/hasan-habka-portfolio/static/js/main.149ce6a3.js",
+    "static/js/879.6d707295.chunk.js": "/hasan-habka-portfolio/static/js/879.6d707295.chunk.js",
+    "static/js/18.be0de0b7.chunk.js": "/hasan-habka-portfolio/static/js/18.be0de0b7.chunk.js",
+    "static/js/173.1688ac6d.chunk.js": "/hasan-habka-portfolio/static/js/173.1688ac6d.chunk.js",
+    "static/js/865.f2fdd221.chunk.js": "/hasan-habka-portfolio/static/js/865.f2fdd221.chunk.js",
+    "static/js/951.150b0d28.chunk.js": "/hasan-habka-portfolio/static/js/951.150b0d28.chunk.js",
+    "static/js/239.777bf966.chunk.js": "/hasan-habka-portfolio/static/js/239.777bf966.chunk.js",
+    "static/js/760.453519c9.chunk.js": "/hasan-habka-portfolio/static/js/760.453519c9.chunk.js",
+    "static/js/448.0d3f7e46.chunk.js": "/hasan-habka-portfolio/static/js/448.0d3f7e46.chunk.js",
+    "static/js/355.619f3c54.chunk.js": "/hasan-habka-portfolio/static/js/355.619f3c54.chunk.js",
+    "static/js/425.34407c5f.chunk.js": "/hasan-habka-portfolio/static/js/425.34407c5f.chunk.js",
+    "static/js/820.17ece7da.chunk.js": "/hasan-habka-portfolio/static/js/820.17ece7da.chunk.js",
+    "index.html": "/hasan-habka-portfolio/index.html",
+    "main.95637bb4.css.map": "/hasan-habka-portfolio/static/css/main.95637bb4.css.map",
+    "main.149ce6a3.js.map": "/hasan-habka-portfolio/static/js/main.149ce6a3.js.map",
+    "879.6d707295.chunk.js.map": "/hasan-habka-portfolio/static/js/879.6d707295.chunk.js.map",
+    "18.be0de0b7.chunk.js.map": "/hasan-habka-portfolio/static/js/18.be0de0b7.chunk.js.map",
+    "173.1688ac6d.chunk.js.map": "/hasan-habka-portfolio/static/js/173.1688ac6d.chunk.js.map",
+    "865.f2fdd221.chunk.js.map": "/hasan-habka-portfolio/static/js/865.f2fdd221.chunk.js.map",
+    "951.150b0d28.chunk.js.map": "/hasan-habka-portfolio/static/js/951.150b0d28.chunk.js.map",
+    "239.777bf966.chunk.js.map": "/hasan-habka-portfolio/static/js/239.777bf966.chunk.js.map",
+    "760.453519c9.chunk.js.map": "/hasan-habka-portfolio/static/js/760.453519c9.chunk.js.map",
+    "448.0d3f7e46.chunk.js.map": "/hasan-habka-portfolio/static/js/448.0d3f7e46.chunk.js.map",
+    "355.619f3c54.chunk.js.map": "/hasan-habka-portfolio/static/js/355.619f3c54.chunk.js.map",
+    "425.34407c5f.chunk.js.map": "/hasan-habka-portfolio/static/js/425.34407c5f.chunk.js.map",
+    "820.17ece7da.chunk.js.map": "/hasan-habka-portfolio/static/js/820.17ece7da.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.95637bb4.css",
+    "static/js/main.149ce6a3.js"
+  ]
+}

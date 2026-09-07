@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkportfolio=self.webpackChunkportfolio||[]).push([[865],{7865:function(e,t,r){r.r(t);r(2791);var l=r(1087),o=r(184);t.default=function(){var e=(0,l.lr)()[0].get("fileId");return(0,o.jsx)("iframe",{src:"https://drive.google.com/file/d/".concat(e,"/preview"),width:"100%",allow:"autoplay",className:"h-screen ",title:"pdf preview"})}}}]);
+//# sourceMappingURL=865.f2fdd221.chunk.js.map
