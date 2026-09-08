@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
 import OptimizedImage from "../OptimizedImage"
+import { publicUrl } from "../../utils/publicUrl"
 
 const NavbarV2 = () => {
   const [showNavbar, setShowNavbar] = useState(true)
@@ -48,11 +49,11 @@ const NavbarV2 = () => {
           className="p-2 bg-[#373737] duration-700 transition-all"
           title="Home"
         >
-          <Link to="/">
+          <Link to="/" aria-label="Home">
             <div className="rounded-full bg-gray-200 grayscale hover:grayscale-0 cursor-pointer z-10">
               <OptimizedImage
                 priority
-                src="/images/profile-small.webp"
+                src={publicUrl("images/profile-small.webp")}
                 alt="Hasan Habka"
                 width={40}
                 height={40}

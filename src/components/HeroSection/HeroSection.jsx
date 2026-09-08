@@ -3,6 +3,7 @@ import CustomButton from "../CustomButton"
 import OptimizedImage from "../OptimizedImage"
 import TextSplitter from "../TextSpletter"
 import { generalDetails } from "../../content/generalDetails"
+import { publicUrl } from "../../utils/publicUrl"
 
 const HeroSection = () => {
   return (
@@ -34,12 +35,23 @@ const HeroSection = () => {
               />
             </div>
           </h1>
-          <CustomButton title="Get in touch" reversed href="#getInTouch" />
+          <CustomButton
+            title="Get in touch"
+            reversed
+            href="#getInTouch"
+            onClick={(event) => {
+              const section = document.getElementById("getInTouch")
+              if (!section) return
+              event.preventDefault()
+              section.scrollIntoView({ behavior: "smooth", block: "start" })
+              window.history.replaceState(null, "", "#getInTouch")
+            }}
+          />
         </div>
       </div>
       <div className="mt-[80px] flex items-start justify-center md:w-3/12 bg-transparent md:bg-two relative md:h-auto z-1 ">
         <OptimizedImage
-          src="/images/hero.webp"
+          src={publicUrl("images/hero.webp")}
           alt=""
           aria-hidden="true"
           width={420}
@@ -48,7 +60,7 @@ const HeroSection = () => {
         />
         <OptimizedImage
           priority
-          src="/images/profile.webp"
+          src={publicUrl("images/profile.webp")}
           alt={`Portrait of ${generalDetails.name}`}
           width={320}
           height={320}
