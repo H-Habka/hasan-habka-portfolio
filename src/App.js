@@ -6,20 +6,13 @@ import Loader from "./components/Loader"
 import NavbarV2 from "./components/NavBar/v2"
 import ProjectPage from "./components/ProjectPage"
 import ScrollToTop from "./components/scrollTop"
+import HomePage from "./pages/HomePage"
 import { publicUrl } from "./utils/publicUrl"
 
 const OfficialDocs = lazy(() => import("./components/official-docs"))
-const SoftwareExperience = lazy(() => import("./components/softwareExperience"))
-const CompaniesIworkedWith = lazy(() =>
-  import("./components/CompaniesIworkedWith")
-)
 const PDFPreviewPage = lazy(() =>
   import("./components/official-docs/PDFPreviewPage")
 )
-const HeroSection = lazy(() => import("./components/HeroSection/HeroSection"))
-const AboutMeSection = lazy(() => import("./components/AboutMeSection/index"))
-const WorkSection = lazy(() => import("./components/WorkSection/index"))
-const GetInTouchSection = lazy(() => import("./components/GetInTouchSection"))
 
 function App() {
   useEffect(() => {
@@ -44,32 +37,10 @@ function App() {
         >
           <NavbarV2 />
           <Routes>
-            <Route
-              path="/"
-              Component={() => (
-                <>
-                  <HeroSection />
-                  <AboutMeSection />
-                  <SoftwareExperience />
-                  <WorkSection isSticky title="LATEST WORK" />
-                  <CompaniesIworkedWith />
-                  <GetInTouchSection />
-                </>
-              )}
-            />
-            <Route
-              path="/official-docs"
-              Component={() => (
-                <>
-                  <OfficialDocs />
-                </>
-              )}
-            />
-            <Route path="/preview" Component={() => <PDFPreviewPage />} />
-            <Route
-              path="/projects/:projectName"
-              Component={() => <ProjectPage />}
-            />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/official-docs" element={<OfficialDocs />} />
+            <Route path="/preview" element={<PDFPreviewPage />} />
+            <Route path="/projects/:projectName" element={<ProjectPage />} />
           </Routes>
         </div>
       </Router>

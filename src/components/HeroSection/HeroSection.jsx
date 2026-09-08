@@ -8,16 +8,18 @@ import { publicUrl } from "../../utils/publicUrl"
 const HeroSection = () => {
   return (
     <div id="home" className="flex flex-col md:flex-row md:h-screen relative">
-      <div
+      <button
+        type="button"
+        aria-label="Scroll to next section"
         onClick={() => {
           window.scrollTo({ top: window.innerHeight, behavior: "smooth" })
         }}
-        className="hidden md:flex hover:scale-110 transition-all duration-500 opacity-30 hover:opacity-100 cursor-pointer absolute left-1/2 bottom-3 w-8 h-16 rounded-full border-2 border-gray-400 -translate-x-1/2 group"
+        className="hidden md:flex hover:scale-110 transition-all duration-500 opacity-30 hover:opacity-100 cursor-pointer absolute left-1/2 bottom-3 w-8 h-16 rounded-full border-2 border-gray-400 -translate-x-1/2 group focus-visible:opacity-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-four"
       >
         <div className="transition-all duration-700 flex items-center group-hover:translate-y-7 justify-center w-8 h-8 rounded-full bg-gray-700">
           <div className="w-2 h-2 bg-gray-200 rounded-full"></div>
         </div>
-      </div>
+      </button>
       <div className="order-2 md:order-none w-full md:w-9/12 md:pt-40 pt-8 ">
         <div className="flex flex-col gap-2 px-2 md:px-10 md:w-10/12 w-full items-center md:items-start ">
           <h1 className=" font-bold flex flex-col gap-4 my-[50px] relative">
