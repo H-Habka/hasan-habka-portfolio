@@ -1,78 +1,90 @@
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import { Link, useLocation } from "react-router-dom"
 import OptimizedImage from "../OptimizedImage"
 import { publicUrl } from "../../utils/publicUrl"
+import { generalDetails } from "../../content/generalDetails"
+
+const links = [
+  { label: "Work", hash: "work" },
+  { label: "About", hash: "about" },
+  { label: "Docs", to: "/official-docs" },
+  { label: "Contact", hash: "getInTouch" },
+]
 
 const NavbarV2 = () => {
-  const [showNavbar, setShowNavbar] = useState(true)
-  const [isSkiped, setIsSkiped] = useState(false)
   const location = useLocation()
 
-  let oldScroll = useRef(0)
-
-  useEffect(() => {
-    const scrollListener = () => {
-      if (window.scrollY > oldScroll.current && showNavbar) {
-        setShowNavbar(false)
-      } else if (window.scrollY < oldScroll.current && !showNavbar) {
-        setShowNavbar(true)
-      }
-      oldScroll.current = window.scrollY
-
-      if (window.scrollY >= 100 && !isSkiped) {
-        setIsSkiped(true)
-      } else if (window.scrollY < 100 && isSkiped) {
-        setIsSkiped(false)
-      }
-    }
-
-    window.addEventListener("scroll", scrollListener, { passive: true })
-
-    return () => {
-      window.removeEventListener("scroll", scrollListener)
-    }
-  }, [showNavbar, isSkiped])
+  const scrollToId = (id) => {
+    const section = document.getElementById(id)
+    if (!section) return
+    section.scrollIntoView({ behavior: "smooth", block: "start" })
+  }
 
   return (
-    <header
-      className={`transition-all duration-1000 flex justify-between items-center sm:px-10 px-2 z-50 fixed ${
-        showNavbar ? " top-0 " : " -top-20 "
-      }`}
-    >
-      <nav
-        aria-label="Primary"
-        className={`bg-gradient-to-r from-[#373737] via-[#373737] to-[#3A3A3A] z-1 relative transition-all duration-500 group rounded-b-md flex items-center gap-4 overflow-hidden ${
-          location.pathname !== "/official-docs" ? "hover:pr-[120px]" : ""
-        }`}
-      >
-        <Link
-          to="/"
-          aria-label="Home"
-          title="Home"
-          className="p-2 bg-[#373737] duration-700 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-four"
-        >
-          <div className="rounded-full bg-gray-200 grayscale hover:grayscale-0 cursor-pointer z-10">
+    <header className="fixed top-0 left-0 right-0 z-50 md:pl-[72px]">
+      <div className="bg-ink/80 backdrop-blur-md border-b border-line">
+        <div className="section-shell h-[72px] flex items-center justify-between gap-4 md:pl-4">
+          <Link
+            to="/"
+            aria-label="Home"
+            title="Home"
+            className="flex items-center gap-3 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper rounded-full"
+          >
             <OptimizedImage
               priority
               src={publicUrl("images/profile-small.webp")}
               alt="Hasan Habka"
               width={40}
               height={40}
-              className="w-10 h-10 rounded-full"
+              className="w-10 h-10 rounded-full object-cover border border-line"
             />
-          </div>
-        </Link>
-        {location.pathname !== "/official-docs" ? (
-          <div className="text-lg -translate-x-full opacity-0 group-hover:opacity-100 group-hover:translate-x-0 absolute right-2 whitespace-nowrap z-[-1]">
-            <Link
-              className="text-gray-200 transition-all duration-500 hover:text-four focus-visible:text-four before:h-[2px] before:w-0 hover:before:w-full before:absolute before:bg-four before:transition-all before:duration-five before:bottom-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-four"
-              to="/official-docs"
-            >
-              Official Docs
-            </Link>
-          </div>
-        ) : null}
-      </nav>
+            <span className="hidden sm:flex flex-col leading-tight">
+              <span className="font-display text-lg text-ivory">
+                Hasan Habka
+              </span>
+              <span className="text-[11px] uppercase tracking-[0.18em] text-mute">
+                {generalDetails.jobTitle}
+              </span>
+            </span>
+          </Link>
+          <nav aria-label="Primary" className="flex items-center gap-1 sm:gap-2">
+            {links.map((item) => {
+              if (item.to) {
+                const active = location.pathname === item.to
+                return (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className={`px-2.5 sm:px-3 py-2 text-[12px] sm:text-sm tracking-wide rounded-full transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper ${
+                      active
+                        ? "text-copper"
+                        : "text-ivory/80 hover:text-ivory"
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              }
+
+              return (
+                <Link
+                  key={item.label}
+                  to={`/#${item.hash}`}
+                  onClick={(event) => {
+                    if (location.pathname !== "/") return
+                    event.preventDefault()
+                    scrollToId(item.hash)
+                    window.history.replaceState(null, "", `#${item.hash}`)
+                  }}
+                  className="px-2.5 sm:px-3 py-2 text-[12px] sm:text-sm tracking-wide rounded-full text-ivory/80 hover:text-ivory transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+          </nav>
+        </div>
+      </div>
     </header>
   )
 }

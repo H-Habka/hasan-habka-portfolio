@@ -1,56 +1,63 @@
 import React from "react"
-import TextSplitter from "../TextSpletter"
+import SectionHeading from "../SectionHeading"
 import OptimizedImage from "../OptimizedImage"
 import { softwareExperienceData } from "../../content/softwareExperienceData"
 
 const SoftwareExperience = () => {
   return (
-    <div
-      data-aos="fade-up"
-      className="md:px-[10vw] md:mt-0 mt-[130px] md:min-h-[100vh] flex flex-col justify-center"
-    >
-      <div className=" flex flex-col md:flex-row gap-10 items-center  bg-[#12121222] p-8 md:rounded-xl">
-        <div className="md:py-20 text-3xl font-bold  md:text-4xl md:max-w-[40vw] flex gap-2 text-four">
-          <TextSplitter strokeWordsArray={[0, 1]} text="Software Experience" />
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-10 flex-1 [&_img]:rounded-xl hover:[&_img]:-translate-y-1 hover:[&_img]:-translate-x-1 [&_img]:transition-all [&_img]:duration-200 hover:[&_img]:shadow-[10px_10px_10px_2px_#121212] [&_img]:w-[120px] [&_img]:h-[120px] [&>a]:justify-self-center">
-          {softwareExperienceData?.map((item, idx) =>
-            item.href ? (
+    <section id="software" className="py-20 md:py-28">
+      <div className="section-shell">
+        <SectionHeading eyebrow="02 / Tools" title="Software experience" />
+        <div
+          data-aos="fade-up"
+          className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
+        >
+          {softwareExperienceData?.map((item, idx) => {
+            const inner = (
+              <>
+                <OptimizedImage
+                  alt={item.name}
+                  src={item.image}
+                  width={120}
+                  height={120}
+                  className="w-16 h-16 md:w-20 md:h-20 rounded-xl object-cover"
+                />
+                <p className="mt-4 text-sm md:text-base font-medium text-ivory">
+                  {item.name}
+                </p>
+              </>
+            )
+
+            const cardClass =
+              "flex flex-col items-center justify-center rounded-2xl border border-line bg-surface/70 p-6 min-h-[160px] transition-transform duration-200 hover:-translate-y-1"
+
+            return item.href ? (
               <a
                 key={item.name}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
                 data-aos="zoom-out"
-                data-aos-delay={idx * 250}
+                data-aos-delay={idx * 80}
                 aria-label={item.name}
+                className={cardClass}
               >
-                <OptimizedImage
-                  alt={item.name}
-                  src={item.image}
-                  width={120}
-                  height={120}
-                />
+                {inner}
               </a>
             ) : (
               <div
                 key={item.name}
-                className="flex items-center justify-center"
+                className={cardClass}
                 data-aos="zoom-out"
-                data-aos-delay={idx * 250}
+                data-aos-delay={idx * 80}
               >
-                <OptimizedImage
-                  alt={item.name}
-                  src={item.image}
-                  width={120}
-                  height={120}
-                />
+                {inner}
               </div>
             )
-          )}
+          })}
         </div>
       </div>
-    </div>
+    </section>
   )
 }
 

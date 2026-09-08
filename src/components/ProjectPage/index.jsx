@@ -2,6 +2,7 @@ import React, { lazy } from "react"
 import { useParams } from "react-router-dom"
 import ProjectContentRenderer from "./ProjectContentRenderer"
 import { projectsData } from "../../content/projects"
+
 const WorkSection = lazy(() => import("../WorkSection/index"))
 const GetInTouchSection = lazy(() => import("../GetInTouchSection"))
 
@@ -11,13 +12,11 @@ const ProjectPage = () => {
   const projectToRender = projectsData[projectName]
 
   return (
-    <div>
+    <main>
       <ProjectContentRenderer {...projectToRender} />
-      <div className="pb-[120px]">
-        <WorkSection cardToHide={projectName} title="MORE WORK" />
-        <GetInTouchSection hideSocialMedia />
-      </div>
-    </div>
+      <WorkSection cardToHide={projectName} title="More work" />
+      <GetInTouchSection />
+    </main>
   )
 }
 

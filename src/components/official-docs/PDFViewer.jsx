@@ -5,22 +5,21 @@ import { Link } from "react-router-dom"
 
 const PDFViewer = ({ title, to }) => {
   return (
-    <Link to={to}>
-      <div className="h-full rounded-2xl flex flex-col gap-4 p-4 group relative transition-all duration-500 bg-[#232323] justify-between z-1 ">
-        <div className="flex items-center gap-6">
-          <p className="text-white text-lg">{title}</p>
-        </div>
-        <div className="flex items-center justify-center">
-          <FaFilePdf
-            size={100}
-            className="fill-red-300 group-hover:fill-red-600 transition-all duration-500"
-          />
-        </div>
-        <button className="flex gap-2 py-2 px-0 group-hover:px-2  group-hover:bg-white text-white group-hover:text-two w-fit transition-all duration-500 rounded-lg">
-          <p>Preview PDF</p>
-          <AiOutlineArrowRight size={24} />
-        </button>
+    <Link
+      to={to}
+      className="h-full rounded-2xl flex flex-col gap-6 p-5 group relative transition-colors duration-300 bg-surface border border-line hover:border-copper/50 justify-between focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
+    >
+      <p className="text-ivory text-lg leading-snug">{title}</p>
+      <div className="flex items-center justify-center py-6">
+        <FaFilePdf
+          size={72}
+          className="fill-copper/80 group-hover:fill-copper transition-colors duration-300"
+        />
       </div>
+      <span className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.14em] text-ivory/80 group-hover:text-copper">
+        Preview PDF
+        <AiOutlineArrowRight size={18} />
+      </span>
     </Link>
   )
 }
