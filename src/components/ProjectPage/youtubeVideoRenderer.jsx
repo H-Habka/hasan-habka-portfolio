@@ -1,6 +1,6 @@
 import React from "react"
 
-const YoutubeVideoRenderer = ({ videoId }) => {
+const YoutubeVideoRenderer = ({ videoId, title }) => {
   return (
     <iframe
       className="w-full h-full"
@@ -8,7 +8,8 @@ const YoutubeVideoRenderer = ({ videoId }) => {
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
-      title="YouTube video player"
+      loading="lazy"
+      title={title || "YouTube video player"}
     ></iframe>
   )
 }

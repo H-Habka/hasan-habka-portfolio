@@ -2,7 +2,7 @@ import React from "react"
 import TextSplitter from "../TextSpletter"
 import WorkCard from "./workCard"
 import { projectsDataAsArray } from "../../content/projects"
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import OptimizedImage from "../OptimizedImage"
 
 const WorkSection = ({ title, isSticky, cardToHide }) => {
   return (
@@ -29,6 +29,13 @@ const WorkSection = ({ title, isSticky, cardToHide }) => {
           className="flex flex-col gap-8 z-20 pb-8  md:px-8"
         >
           {projectsDataAsArray.map((project) => {
+            const previewLeft =
+              project?.cardImages?.[0] ??
+              project.photoGallery?.[0]?.images?.[0]?.original
+            const previewRight =
+              project?.cardImages?.[1] ??
+              project.photoGallery?.[0]?.images?.[1]?.original
+
             return (
               project.name !== cardToHide && (
                 <WorkCard
@@ -38,22 +45,22 @@ const WorkSection = ({ title, isSticky, cardToHide }) => {
                   key={project.name}
                 >
                   <div className="flex flex-col md:flex-row h-full">
-                    <LazyLoadImage
-                      className="lg:w-1/2 flex-1 h-full"
-                      src={
-                        project?.cardImages?.[0] ??
-                        project.photoGallery?.[0]?.images?.[0]?.original
-                      }
-                      alt={project?.name}
+                    <OptimizedImage
+                      className="lg:w-1/2 flex-1 h-full w-full object-cover"
+                      src={previewLeft}
+                      alt={`${project.title} preview`}
+                      width={800}
+                      height={400}
                     />
-                    <LazyLoadImage
-                      className="lg:w-1/2 flex-1 h-full"
-                      src={
-                        project?.cardImages?.[1] ??
-                        project.photoGallery?.[0]?.images?.[1]?.original
-                      }
-                      alt={project?.name}
-                    />
+                    {previewRight ? (
+                      <OptimizedImage
+                        className="lg:w-1/2 flex-1 h-full w-full object-cover"
+                        src={previewRight}
+                        alt=""
+                        width={800}
+                        height={400}
+                      />
+                    ) : null}
                   </div>
                 </WorkCard>
               )

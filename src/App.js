@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
-import { lazy, Suspense } from "react"
+import { lazy, Suspense, useEffect } from "react"
 import "aos/dist/aos.css"
 import Aos from "aos"
 import Loader from "./components/Loader"
@@ -21,9 +21,18 @@ const WorkSection = lazy(() => import("./components/WorkSection/index"))
 const GetInTouchSection = lazy(() => import("./components/GetInTouchSection"))
 
 function App() {
-  Aos.init({
-    easing: "ease-in-out",
-  })
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
+    Aos.init({
+      easing: "ease-in-out",
+      once: true,
+      duration: 700,
+      disable: prefersReducedMotion,
+    })
+  }, [])
+
   return (
     <Suspense fallback={<Loader />}>
       <Router>

@@ -4,7 +4,7 @@ import { RingLoader } from "react-spinners"
 const Loader = () => {
   return (
     <div
-      style={{ backgroundImage: `url(/images/bg.webp)` }}
+      style={{ backgroundImage: `url(/images/bg.png)` }}
       className="overflow-x-hidden bg-one w-screen h-screen flex items-center justify-center"
     >
       <RingLoader color="#e19f51" size={120} speedMultiplier={0.8} />

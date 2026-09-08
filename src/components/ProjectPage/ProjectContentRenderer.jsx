@@ -24,6 +24,7 @@ const ProjectContentRenderer = ({
             {descriptionBlocks?.map((description, idx) => {
               return (
                 <p
+                  key={`${title}-desc-${idx}`}
                   className="text-[20px]"
                   data-aos="fade-right"
                   data-aos-delay={500 + idx * 300}
@@ -41,7 +42,7 @@ const ProjectContentRenderer = ({
         {photoGallery?.map(
           ({ photoGalleryTitle, strokeWordsArray, images }) => {
             return (
-              <div className="mt-20">
+              <div key={photoGalleryTitle} className="mt-20">
                 <div className="mb-6 text-white text-[32px] font-bold tracking-wide  md:text-[80px] flex justify-center">
                   <TextSplitter
                     strokeWordsArray={strokeWordsArray}
@@ -57,7 +58,7 @@ const ProjectContentRenderer = ({
         )}
         {videos?.map(({ title, videoId, strokeWordsArray }) => {
           return (
-            <div className="mt-20">
+            <div key={videoId || title} className="mt-20">
               <div className="mb-6 text-white text-[32px] font-bold tracking-wide  md:text-[80px] flex justify-center ">
                 <TextSplitter
                   strokeWordsArray={strokeWordsArray}
@@ -65,7 +66,7 @@ const ProjectContentRenderer = ({
                 />
               </div>
               <div data-aos="zoom-in-up" className="h-[calc(9/16*100vw)] md:h-[80vh]">
-                <YoutubeVideoRenderer videoId={videoId} />
+                <YoutubeVideoRenderer videoId={videoId} title={title} />
               </div>
             </div>
           )
