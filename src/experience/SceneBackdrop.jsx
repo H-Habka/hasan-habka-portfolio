@@ -69,6 +69,7 @@ export default function SceneBackdrop() {
       <Canvas
         camera={{ position: [0.35, 0.92, 5.1], fov: 30, near: 0.1, far: 40 }}
         dpr={mobile ? [1, 1] : [1, 1.5]}
+        style={{ pointerEvents: "none" }}
         gl={{
           antialias: !mobile,
           alpha: true,
