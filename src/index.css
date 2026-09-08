@@ -292,6 +292,11 @@ code {
   z-index: 0;
 }
 
+.scene-backdrop,
+.scene-backdrop * {
+  pointer-events: none !important;
+}
+
 .scene-backdrop canvas {
   display: block;
   width: 100% !important;
@@ -305,11 +310,11 @@ code {
   background:
     linear-gradient(
       180deg,
-      rgba(10, 14, 20, 0.28) 0%,
-      rgba(10, 14, 20, 0.18) 38%,
-      rgba(36, 38, 43, 0.55) 100%
+      rgba(10, 14, 20, 0.18) 0%,
+      rgba(10, 14, 20, 0.08) 40%,
+      rgba(36, 38, 43, 0.42) 100%
     ),
-    radial-gradient(ellipse at 70% 40%, transparent 20%, rgba(10, 14, 20, 0.35) 80%);
+    radial-gradient(ellipse at 72% 42%, transparent 28%, rgba(10, 14, 20, 0.22) 82%);
   pointer-events: none;
 }
 

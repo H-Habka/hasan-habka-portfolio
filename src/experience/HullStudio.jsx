@@ -25,7 +25,7 @@ function YachtHull({ reduced }) {
   const waterline = useMemo(() => createWaterlineRing(), [])
 
   return (
-    <group position={[0, -0.08, 0]}>
+    <group position={[0, -0.02, 0]} scale={1.12}>
       <mesh geometry={hull} castShadow>
         <meshStandardMaterial
           color={hullPaint}
@@ -38,7 +38,7 @@ function YachtHull({ reduced }) {
         <lineBasicMaterial
           color={copper}
           transparent
-          opacity={0.42}
+          opacity={0.62}
           depthWrite={false}
         />
       </lineSegments>
@@ -152,7 +152,7 @@ function StudioLights() {
       <ambientLight intensity={0.16} />
       <directionalLight
         position={[4.2, 5.2, 2.4]}
-        intensity={1.35}
+        intensity={1.7}
         color="#f0a06a"
         castShadow={false}
       />
