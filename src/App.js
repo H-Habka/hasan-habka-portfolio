@@ -32,15 +32,10 @@ function App() {
     <Suspense fallback={<Loader />}>
       <Router basename={process.env.PUBLIC_URL}>
         <ScrollToTop />
-        <div className="site-shell">
-          <div
-            aria-hidden
-            className="pointer-events-none fixed inset-0 z-0 opacity-[0.28]"
-            style={{
-              backgroundImage: `url(${publicUrl("images/bg.png")})`,
-              backgroundSize: "240px 240px",
-            }}
-          />
+        <div
+          className="site-shell bg-one"
+          style={{ backgroundImage: `url(${publicUrl("images/bg.png")})` }}
+        >
           <div className="site-content">
             <NavbarV2 />
             <Routes>

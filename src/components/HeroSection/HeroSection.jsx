@@ -38,28 +38,71 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="order-1 md:order-none relative mx-auto w-full max-w-[380px] flex items-center justify-center overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-10 rounded-full bg-copper/15 blur-3xl"
-          />
-          <OptimizedImage
-            src={publicUrl("images/hero.webp")}
-            alt=""
-            aria-hidden="true"
-            width={420}
-            height={560}
-            className="pointer-events-none absolute -left-6 md:-left-16 top-4 w-40 md:w-56 opacity-80"
-          />
-          <OptimizedImage
-            priority
-            src={publicUrl("images/profile.webp")}
-            alt={`Portrait of ${generalDetails.name}`}
-            width={320}
-            height={320}
-            className="relative w-10/12 max-w-[320px] rounded-full border border-ivory/10"
-            style={{ boxShadow: "0 18px 48px rgba(0,0,0,.5)" }}
-          />
+        <div className="order-1 md:order-none relative mx-auto w-full max-w-[400px] overflow-visible">
+          <div className="hero-portrait">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
+            >
+              <div className="absolute -inset-10 rounded-full bg-copper/15 blur-3xl" />
+            </div>
+            <div className="hero-waves" aria-hidden>
+              <svg viewBox="0 0 128 116" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient
+                    id="hero-wave-grad"
+                    x1="0"
+                    y1="0"
+                    x2="0.2"
+                    y2="1"
+                  >
+                    <stop offset="0%" stopColor="#e07a3d" />
+                    <stop offset="50%" stopColor="#f0a06a" />
+                    <stop offset="100%" stopColor="#d55A54" />
+                  </linearGradient>
+                  <filter
+                    id="hero-wave-glow"
+                    x="-30%"
+                    y="-30%"
+                    width="160%"
+                    height="160%"
+                  >
+                    <feGaussianBlur stdDeviation="1.2" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+                <path
+                  d="M 78 6 A 70 52 0 0 0 78 110"
+                  fill="none"
+                  stroke="url(#hero-wave-grad)"
+                  strokeWidth="3.6"
+                  strokeLinecap="round"
+                  filter="url(#hero-wave-glow)"
+                  opacity="0.95"
+                />
+                <path
+                  d="M 78 16 A 56 42 0 0 0 78 100"
+                  fill="none"
+                  stroke="url(#hero-wave-grad)"
+                  strokeWidth="2.8"
+                  strokeLinecap="round"
+                  opacity="0.88"
+                />
+              </svg>
+            </div>
+            <OptimizedImage
+              priority
+              src={publicUrl("images/profile.webp")}
+              alt={`Portrait of ${generalDetails.name}`}
+              width={320}
+              height={320}
+              className="relative z-[2] w-full rounded-full border border-ivory/10"
+              style={{ boxShadow: "0 18px 48px rgba(0,0,0,.5)" }}
+            />
+          </div>
         </div>
       </div>
     </section>
