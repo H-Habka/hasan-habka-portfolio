@@ -9,24 +9,24 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center pt-24 pb-28 md:pt-28 md:pb-20"
+      className="relative min-h-[100svh] flex items-start md:items-center pt-24 pb-[calc(var(--dock-h)+var(--safe-bottom)+2.75rem)] md:pt-28 md:pb-20"
     >
       <div className="section-shell grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 md:gap-16 items-center">
         <div className="order-2 md:order-none flex flex-col items-start hero-copy">
           <p className="text-[11px] md:text-xs font-semibold tracking-[0.32em] uppercase text-copper">
             {generalDetails.jobTitle} · Hull, yacht & jewellery design
           </p>
-          <h1 className="mt-4 font-display text-[3.4rem] leading-[0.9] sm:text-7xl md:text-[6.4rem] text-ivory">
+          <h1 className="mt-3 md:mt-4 font-display text-[2.85rem] leading-[0.9] sm:text-7xl md:text-[6.4rem] text-ivory">
             Hasan{" "}
             <span className="block md:mt-1">Habka</span>
           </h1>
-          <p className="mt-6 max-w-xl text-lg md:text-xl text-ivory/80 leading-relaxed">
+          <p className="mt-4 md:mt-6 max-w-xl text-lg md:text-xl text-ivory/80 leading-relaxed">
             {generalDetails.descriptionTitle}
           </p>
           <p className="mt-3 max-w-xl text-sm md:text-base text-ivory/55 tracking-[0.18em] uppercase">
             Sheer · Body · Half-breadth
           </p>
-          <div className="mt-8 flex flex-wrap items-center gap-3">
+          <div className="mt-5 md:mt-8 flex flex-wrap items-center gap-3">
             <CustomButton
               title="Get in touch"
               href="#getInTouch"
@@ -39,12 +39,12 @@ const HeroSection = () => {
             />
             <CustomButton title="Official docs" reversed to="/official-docs" />
           </div>
-          <p className="mt-8 text-[11px] tracking-[0.22em] uppercase text-mute">
+          <p className="mt-5 md:mt-8 text-[11px] tracking-[0.22em] uppercase text-mute">
             Scroll — the camera walks the lines plan
           </p>
         </div>
 
-        <div className="order-1 md:order-none relative mx-auto w-full max-w-[400px] overflow-visible">
+        <div className="order-1 md:order-none relative mx-auto w-full max-w-[220px] md:max-w-[400px] overflow-visible">
           <div className="hero-portrait">
             <div
               aria-hidden
