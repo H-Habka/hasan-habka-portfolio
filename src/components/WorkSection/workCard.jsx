@@ -7,7 +7,7 @@ const WorkCard = ({ title, to, children }) => {
     <article className="group">
       <Link
         to={to}
-        className="block overflow-hidden rounded-3xl border border-line bg-surface/80 hover:border-copper/50 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
+        className="dwg-frame block overflow-hidden bg-surface/80 hover:border-copper/50 transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper"
       >
         <div className="relative h-[260px] md:h-[340px] overflow-hidden">
           <div className="h-full w-full transition-transform duration-500 group-hover:scale-[1.03]">

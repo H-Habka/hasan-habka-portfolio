@@ -12,11 +12,11 @@ const WorkSection = ({ title = "Latest work", cardToHide }) => {
   return (
     <section id="work" className="py-20 md:py-28">
       <div className="section-shell">
-        <SectionHeading eyebrow="03 / Portfolio" title={heading} />
-        <div
-          data-aos="fade-up"
-          className="mt-10 grid md:grid-cols-2 gap-5 md:gap-7"
-        >
+        <SectionHeading
+          eyebrow={cardToHide ? "Portfolio" : "06 / Portfolio"}
+          title={heading}
+        />
+        <div className="mt-10 grid md:grid-cols-2 gap-5 md:gap-7">
           {projectsDataAsArray.map((project) => {
             if (project.name === cardToHide) return null
 

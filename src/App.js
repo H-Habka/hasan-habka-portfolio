@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom"
 import { lazy, Suspense, useEffect } from "react"
 import "aos/dist/aos.css"
+import "lenis/dist/lenis.css"
 import Aos from "aos"
 import Loader from "./components/Loader"
 import NavbarV2 from "./components/NavBar/v2"
@@ -8,6 +9,7 @@ import ProjectPage from "./components/ProjectPage"
 import ScrollToTop from "./components/scrollTop"
 import SocialBar from "./components/SocialBar"
 import HomePage from "./pages/HomePage"
+import ScrollExperience from "./motion/ScrollExperience"
 import { publicUrl } from "./utils/publicUrl"
 
 const OfficialDocs = lazy(() => import("./components/official-docs"))
@@ -31,6 +33,7 @@ function App() {
   return (
     <Suspense fallback={<Loader />}>
       <Router basename={process.env.PUBLIC_URL}>
+        <ScrollExperience />
         <ScrollToTop />
         <div
           className="site-shell bg-one"

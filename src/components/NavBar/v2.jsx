@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom"
 import OptimizedImage from "../OptimizedImage"
 import { publicUrl } from "../../utils/publicUrl"
 import { generalDetails } from "../../content/generalDetails"
+import { scrollToId } from "../../motion/scrollApi"
 
 const links = [
   { label: "Work", hash: "work" },
@@ -13,12 +14,6 @@ const links = [
 
 const NavbarV2 = () => {
   const location = useLocation()
-
-  const scrollToId = (id) => {
-    const section = document.getElementById(id)
-    if (!section) return
-    section.scrollIntoView({ behavior: "smooth", block: "start" })
-  }
 
   return (
     <header className="site-header fixed top-0 left-0 right-0 z-50">
