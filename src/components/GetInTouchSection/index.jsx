@@ -15,9 +15,9 @@ const GetInTouchSection = () => {
   return (
     <section id="getInTouch" className="py-20 md:py-28">
       <div className="section-shell">
-        <div className="rounded-[2rem] border border-line bg-surface/80 px-6 py-12 md:px-14 md:py-16">
+        <div className="dwg-frame bg-surface/80 px-6 py-12 md:px-14 md:py-16">
           <SectionHeading
-            eyebrow="05 / Contact"
+            eyebrow="08 / Contact"
             title="Get in touch"
             align="center"
           />

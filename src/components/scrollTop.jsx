@@ -13,7 +13,11 @@ const ScrollToTop = () => {
         return
       }
     }
-    window.scrollTo(0, 0)
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0, { immediate: true })
+    } else {
+      window.scrollTo(0, 0)
+    }
   }, [pathname, hash])
 
   return null

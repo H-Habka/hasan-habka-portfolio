@@ -7,12 +7,9 @@ const SoftwareExperience = () => {
   return (
     <section id="software" className="py-20 md:py-28">
       <div className="section-shell">
-        <SectionHeading eyebrow="02 / Tools" title="Software experience" />
-        <div
-          data-aos="fade-up"
-          className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6"
-        >
-          {softwareExperienceData?.map((item, idx) => {
+        <SectionHeading eyebrow="04 / Tools" title="Software experience" />
+        <div className="mt-10 grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
+          {softwareExperienceData?.map((item) => {
             const inner = (
               <>
                 <OptimizedImage
@@ -29,7 +26,7 @@ const SoftwareExperience = () => {
             )
 
             const cardClass =
-              "flex flex-col items-center justify-center rounded-2xl border border-line bg-surface/70 p-6 min-h-[160px] transition-transform duration-200 hover:-translate-y-1"
+              "dwg-frame flex flex-col items-center justify-center bg-surface/70 p-6 min-h-[160px] transition-transform duration-200 hover:-translate-y-1"
 
             return item.href ? (
               <a
@@ -37,20 +34,13 @@ const SoftwareExperience = () => {
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
-                data-aos="zoom-out"
-                data-aos-delay={idx * 80}
                 aria-label={item.name}
                 className={cardClass}
               >
                 {inner}
               </a>
             ) : (
-              <div
-                key={item.name}
-                className={cardClass}
-                data-aos="zoom-out"
-                data-aos-delay={idx * 80}
-              >
+              <div key={item.name} className={cardClass}>
                 {inner}
               </div>
             )

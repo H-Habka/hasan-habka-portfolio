@@ -19,21 +19,16 @@ const CompaniesIworkedWith = () => {
   return (
     <section id="companies" className="py-20 md:py-28">
       <div className="section-shell">
-        <SectionHeading eyebrow="04 / Collaborations" title="I have worked with" />
-        <div
-          data-aos="fade-up"
-          className="mt-10 grid sm:grid-cols-2 gap-4 md:gap-6"
-        >
-          {companies.map((company, idx) => (
+        <SectionHeading eyebrow="07 / Collaborations" title="I have worked with" />
+        <div className="mt-10 grid sm:grid-cols-2 gap-4 md:gap-6">
+          {companies.map((company) => (
             <a
               key={company.name}
               href={company.href}
               target="_blank"
               rel="noreferrer"
-              data-aos="zoom-out"
-              data-aos-delay={idx * 80}
               aria-label={company.name}
-              className="flex items-center gap-5 rounded-2xl border border-line bg-surface/70 p-6 transition-transform duration-200 hover:-translate-y-1"
+              className="dwg-frame flex items-center gap-5 bg-surface/70 p-6 transition-transform duration-200 hover:-translate-y-1"
             >
               <OptimizedImage
                 alt={company.name}

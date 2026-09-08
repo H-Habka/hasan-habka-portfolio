@@ -3,6 +3,7 @@ import CustomButton from "../CustomButton"
 import OptimizedImage from "../OptimizedImage"
 import { generalDetails } from "../../content/generalDetails"
 import { publicUrl } from "../../utils/publicUrl"
+import { scrollToId } from "../../motion/scrollApi"
 
 const HeroSection = () => {
   return (
@@ -11,9 +12,9 @@ const HeroSection = () => {
       className="relative min-h-[100svh] flex items-center pt-24 pb-28 md:pt-28 md:pb-20"
     >
       <div className="section-shell grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 md:gap-16 items-center">
-        <div className="order-2 md:order-none flex flex-col items-start">
+        <div className="order-2 md:order-none flex flex-col items-start hero-copy">
           <p className="text-[11px] md:text-xs font-semibold tracking-[0.32em] uppercase text-copper">
-            {generalDetails.jobTitle}
+            {generalDetails.jobTitle} · Hull, yacht & jewellery design
           </p>
           <h1 className="mt-4 font-display text-[3.4rem] leading-[0.9] sm:text-7xl md:text-[6.4rem] text-ivory">
             Hasan{" "}
@@ -22,20 +23,25 @@ const HeroSection = () => {
           <p className="mt-6 max-w-xl text-lg md:text-xl text-ivory/80 leading-relaxed">
             {generalDetails.descriptionTitle}
           </p>
+          <p className="mt-3 max-w-xl text-sm md:text-base text-ivory/55 tracking-[0.18em] uppercase">
+            Sheer · Body · Half-breadth
+          </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <CustomButton
               title="Get in touch"
               href="#getInTouch"
               onClick={(event) => {
-                const section = document.getElementById("getInTouch")
-                if (!section) return
                 event.preventDefault()
-                section.scrollIntoView({ behavior: "smooth", block: "start" })
-                window.history.replaceState(null, "", "#getInTouch")
+                if (scrollToId("getInTouch")) {
+                  window.history.replaceState(null, "", "#getInTouch")
+                }
               }}
             />
             <CustomButton title="Official docs" reversed to="/official-docs" />
           </div>
+          <p className="mt-8 text-[11px] tracking-[0.22em] uppercase text-mute">
+            Scroll — the camera walks the lines plan
+          </p>
         </div>
 
         <div className="order-1 md:order-none relative mx-auto w-full max-w-[400px] overflow-visible">
