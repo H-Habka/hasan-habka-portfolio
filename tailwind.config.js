@@ -18,7 +18,7 @@ module.exports = {
         glow: "#f0a06a",
         ivory: "#f3efe6",
         mute: "#8e97a8",
-        one: "#0a0e14",
+        one: "#24262b",
         two: "#e07a3d",
         three: "#d55A54",
         four: "#f0a06a",

@@ -38,28 +38,32 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="order-1 md:order-none relative mx-auto w-full max-w-[380px] flex items-center justify-center overflow-hidden">
-          <div
-            aria-hidden
-            className="pointer-events-none absolute -inset-10 rounded-full bg-copper/15 blur-3xl"
-          />
-          <OptimizedImage
-            src={publicUrl("images/hero.webp")}
-            alt=""
-            aria-hidden="true"
-            width={420}
-            height={560}
-            className="pointer-events-none absolute -left-6 md:-left-16 top-4 w-40 md:w-56 opacity-80"
-          />
-          <OptimizedImage
-            priority
-            src={publicUrl("images/profile.webp")}
-            alt={`Portrait of ${generalDetails.name}`}
-            width={320}
-            height={320}
-            className="relative w-10/12 max-w-[320px] rounded-full border border-ivory/10"
-            style={{ boxShadow: "0 18px 48px rgba(0,0,0,.5)" }}
-          />
+        <div className="order-1 md:order-none relative mx-auto w-full max-w-[380px] overflow-visible pl-[18%] md:pl-[22%]">
+          <div className="relative w-full">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 overflow-hidden rounded-full"
+            >
+              <div className="absolute -inset-10 rounded-full bg-copper/15 blur-3xl" />
+            </div>
+            <OptimizedImage
+              src={publicUrl("images/hero.webp")}
+              alt=""
+              aria-hidden="true"
+              width={178}
+              height={309}
+              className="pointer-events-none absolute z-[1] h-[108%] md:h-[120%] w-auto max-w-none -left-[22%] md:-left-[28%] top-1/2 -translate-y-1/2 opacity-90"
+            />
+            <OptimizedImage
+              priority
+              src={publicUrl("images/profile.webp")}
+              alt={`Portrait of ${generalDetails.name}`}
+              width={320}
+              height={320}
+              className="relative z-[2] w-full rounded-full border border-ivory/10"
+              style={{ boxShadow: "0 18px 48px rgba(0,0,0,.5)" }}
+            />
+          </div>
         </div>
       </div>
     </section>
