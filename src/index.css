@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
 @import "~react-image-gallery/styles/css/image-gallery.css";
 
 body {
@@ -57,5 +56,12 @@ code {
     100% {
       transform: translate(0px, 20px);
     }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-bounce-2,
+  .animate-pulse {
+    animation: none !important;
   }
 }

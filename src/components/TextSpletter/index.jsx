@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import { twMerge } from "tailwind-merge"
 
 const TextSplitter = ({
@@ -8,16 +8,24 @@ const TextSplitter = ({
   containerClassName,
 }) => {
   const arrayOfWords = text.split(" ")
-  const counter = useRef(0)
   return (
     <div
       className={twMerge("flex flex-wrap justify-center", containerClassName)}
     >
       {arrayOfWords.map((word, i) => {
+        const letterOffset = arrayOfWords
+          .slice(0, i)
+          .reduce((acc, item) => acc + item.length, 0)
         return (
           <div key={i}>
             {word.split("").map((letter, j) => {
-              counter.current = counter.current + 1
+              const delay = (letterOffset + j) * 50
+              const animationProps = withoutAnimation
+                ? {}
+                : {
+                    "data-aos": "fade-right",
+                    "data-aos-delay": delay,
+                  }
               if (
                 Array.isArray(strokeWordsArray) &&
                 strokeWordsArray.includes(i)
@@ -27,26 +35,13 @@ const TextSplitter = ({
                     key={j}
                     style={{ WebkitTextStroke: "1px white" }}
                     className={`text-transparent`}
-                    {...(withoutAnimation
-                      ? {}
-                      : {
-                          "data-aos": "fade-right",
-                          "data-aos-delay": counter.current * 50,
-                        })}
+                    {...animationProps}
                   >
                     {letter}
                   </span>
                 )
               return (
-                <span
-                  key={j}
-                  {...(withoutAnimation
-                    ? {}
-                    : {
-                        "data-aos": "fade-right",
-                        "data-aos-delay": counter.current * 50,
-                      })}
-                >
+                <span key={j} {...animationProps}>
                   {letter}
                 </span>
               )

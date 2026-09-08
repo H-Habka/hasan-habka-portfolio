@@ -16,10 +16,14 @@ const PDFPreviewPage = lazy(() =>
 
 function App() {
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches
     Aos.init({
       easing: "ease-in-out",
       once: true,
       duration: 700,
+      disable: prefersReducedMotion,
     })
   }, [])
 

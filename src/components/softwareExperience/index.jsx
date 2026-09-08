@@ -1,6 +1,6 @@
 import React from "react"
 import TextSplitter from "../TextSpletter"
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import OptimizedImage from "../OptimizedImage"
 import { softwareExperienceData } from "../../content/softwareExperienceData"
 
 const SoftwareExperience = () => {
@@ -17,21 +17,34 @@ const SoftwareExperience = () => {
           {softwareExperienceData?.map((item, idx) =>
             item.href ? (
               <a
+                key={item.name}
                 href={item.href}
                 target="_blank"
                 rel="noreferrer"
                 data-aos="zoom-out"
                 data-aos-delay={idx * 250}
+                aria-label={item.name}
               >
-                <LazyLoadImage alt="autocad" src={item.image} />
+                <OptimizedImage
+                  alt={item.name}
+                  src={item.image}
+                  width={120}
+                  height={120}
+                />
               </a>
             ) : (
               <div
+                key={item.name}
                 className="flex items-center justify-center"
                 data-aos="zoom-out"
                 data-aos-delay={idx * 250}
               >
-                <LazyLoadImage alt="autocad" src={item.image} />
+                <OptimizedImage
+                  alt={item.name}
+                  src={item.image}
+                  width={120}
+                  height={120}
+                />
               </div>
             )
           )}

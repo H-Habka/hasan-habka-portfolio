@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react"
 import { Link, useLocation } from "react-router-dom"
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import OptimizedImage from "../OptimizedImage"
 import { publicUrl } from "../../utils/publicUrl"
 
 const NavbarV2 = () => {
@@ -52,10 +52,12 @@ const NavbarV2 = () => {
           className="p-2 bg-[#373737] duration-700 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-four"
         >
           <div className="rounded-full bg-gray-200 grayscale hover:grayscale-0 cursor-pointer z-10">
-            <LazyLoadImage
-              loading="lazy"
+            <OptimizedImage
+              priority
               src={publicUrl("images/profile-small.webp")}
               alt="Hasan Habka"
+              width={40}
+              height={40}
               className="w-10 h-10 rounded-full"
             />
           </div>

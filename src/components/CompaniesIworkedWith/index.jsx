@@ -1,6 +1,19 @@
 import React from "react"
 import TextSplitter from "../TextSpletter"
-import { LazyLoadImage } from "react-lazy-load-image-component"
+import OptimizedImage from "../OptimizedImage"
+
+const companies = [
+  {
+    name: "Saray Jewellery",
+    href: "https://sarayjewellery.com/",
+    src: "https://i.imgur.com/E3HEC0X.jpeg",
+  },
+  {
+    name: "Marine Design Hub",
+    href: "https://marinedesignhub.co.uk/",
+    src: "https://i.imgur.com/bDPzNxQ.jpeg",
+  },
+]
 
 const CompaniesIworkedWith = () => {
   return (
@@ -16,24 +29,24 @@ const CompaniesIworkedWith = () => {
           />
         </div>
         <div className="flex gap-10 flex-1 items-center justify-evenly [&_img]:rounded-xl hover:[&_img]:-translate-y-1 hover:[&_img]:-translate-x-1 [&_img]:transition-all [&_img]:duration-200 hover:[&_img]:shadow-[10px_10px_10px_2px_#121212] [&_img]:w-[120px] [&_img]:h-[120px] [&>a]:justify-self-center">
-          <a
-            href="https://sarayjewellery.com/"
-            target="_blank"
-            rel="noreferrer"
-            data-aos="zoom-out"
-            data-aos-delay="0"
-          >
-            <LazyLoadImage alt="saray" src="https://i.imgur.com/E3HEC0X.jpeg" />
-          </a>
-          <a
-            href="https://marinedesignhub.co.uk/"
-            target="_blank"
-            rel="noreferrer"
-            data-aos="zoom-out"
-            data-aos-delay="250"
-          >
-            <LazyLoadImage alt="mdh" src="https://i.imgur.com/bDPzNxQ.jpeg" />
-          </a>
+          {companies.map((company, idx) => (
+            <a
+              key={company.name}
+              href={company.href}
+              target="_blank"
+              rel="noreferrer"
+              data-aos="zoom-out"
+              data-aos-delay={idx * 250}
+              aria-label={company.name}
+            >
+              <OptimizedImage
+                alt={company.name}
+                src={company.src}
+                width={120}
+                height={120}
+              />
+            </a>
+          ))}
         </div>
       </div>
     </div>
