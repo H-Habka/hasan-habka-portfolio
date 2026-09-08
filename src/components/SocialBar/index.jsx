@@ -39,11 +39,13 @@ const SocialBar = () => {
   return (
     <nav
       aria-label="Social and contact"
-      className="fixed z-40 left-0 right-0 bottom-0 md:left-0 md:right-auto md:top-1/2 md:bottom-auto md:-translate-y-1/2 md:w-[72px]"
+      className="pointer-events-none fixed z-40 inset-x-0 bottom-0 md:inset-auto md:left-0 md:top-1/2 md:-translate-y-1/2"
     >
       <div
-        className="flex items-center justify-center gap-2 px-3 py-2.5 md:flex-col md:gap-3 md:px-3 md:py-5 bg-surface/95 md:bg-surface/80 backdrop-blur-md border-t md:border-t-0 md:border-r border-line shadow-dock"
-        style={{ paddingBottom: "calc(0.65rem + env(safe-area-inset-bottom, 0px))" }}
+        className="pointer-events-auto flex items-center justify-center gap-2 mx-3 px-3 py-2 md:mx-0 md:flex-col md:gap-3 md:px-3 md:py-5 bg-surface/95 md:bg-surface/80 backdrop-blur-md border border-line md:border-y-0 md:border-l-0 rounded-full md:rounded-none shadow-dock"
+        style={{
+          marginBottom: "max(12px, env(safe-area-inset-bottom, 0px))",
+        }}
       >
         {socialItems.map(({ href, label, icon: Icon, external }) => (
           <a

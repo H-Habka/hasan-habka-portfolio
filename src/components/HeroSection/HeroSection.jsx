@@ -8,7 +8,7 @@ const HeroSection = () => {
   return (
     <section
       id="home"
-      className="relative min-h-[100svh] flex items-center pt-24 pb-16 md:pt-28 md:pb-20"
+      className="relative min-h-[100svh] flex items-center pt-24 pb-28 md:pt-28 md:pb-20"
     >
       <div className="section-shell grid md:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] gap-10 md:gap-16 items-center">
         <div className="order-2 md:order-none flex flex-col items-start">
@@ -16,9 +16,8 @@ const HeroSection = () => {
             {generalDetails.jobTitle}
           </p>
           <h1 className="mt-4 font-display text-[3.4rem] leading-[0.9] sm:text-7xl md:text-[6.4rem] text-ivory">
-            Hasan
-            <br />
-            Habka
+            Hasan{" "}
+            <span className="block md:mt-1">Habka</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg md:text-xl text-ivory/80 leading-relaxed">
             {generalDetails.descriptionTitle}
