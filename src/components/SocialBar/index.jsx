@@ -44,7 +44,7 @@ const SocialBar = () => {
   return (
     <nav
       aria-label="Social and contact"
-      className="pointer-events-none fixed z-40 inset-x-0 bottom-0 md:inset-auto md:left-4 md:top-1/2 md:-translate-y-1/2"
+      className="pointer-events-none fixed z-40 inset-x-0 bottom-0 md:inset-auto md:left-5 md:top-1/2 md:-translate-y-1/2"
     >
       <svg width="0" height="0" className="absolute" aria-hidden>
         <defs>
