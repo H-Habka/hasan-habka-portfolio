@@ -44,7 +44,7 @@ const SocialBar = () => {
   return (
     <nav
       aria-label="Social and contact"
-      className="pointer-events-none fixed z-40 inset-x-0 bottom-0 md:inset-auto md:left-5 md:top-1/2 md:-translate-y-1/2"
+      className="social-nav pointer-events-none fixed z-40"
     >
       <svg width="0" height="0" className="absolute" aria-hidden>
         <defs>
@@ -55,12 +55,7 @@ const SocialBar = () => {
           </linearGradient>
         </defs>
       </svg>
-      <div
-        className="social-dock pointer-events-auto flex items-center justify-center gap-2 mx-3 px-3 py-2 md:mx-0 md:flex-col md:gap-3 md:px-2.5 md:py-4"
-        style={{
-          marginBottom: "max(12px, env(safe-area-inset-bottom, 0px))",
-        }}
-      >
+      <div className="social-dock pointer-events-auto">
         {socialItems.map(({ href, label, icon: Icon, brand, external }) => (
           <a
             key={label}

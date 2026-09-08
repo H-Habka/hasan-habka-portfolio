@@ -10,7 +10,7 @@
   --nav-h: 72px;
   /* Desktop floating dock: inset + rail + gap so header/content never collide. */
   --dock-inset: 20px;
-  --dock-rail-w: 68px;
+  --dock-rail-w: 76px;
   --dock-gap: 24px;
   --dock-clearance: calc(var(--dock-inset) + var(--dock-rail-w) + var(--dock-gap));
 }
@@ -18,10 +18,14 @@
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 12px);
+  overflow-x: clip;
+  max-width: 100%;
 }
 
 body {
   margin: 0;
+  max-width: 100%;
+  overflow-x: clip;
   background: #0a0e14;
   color: #f3efe6;
   font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -42,6 +46,7 @@ code {
 .site-shell {
   position: relative;
   min-height: 100vh;
+  max-width: 100%;
   background-color: #0a0e14;
   background-image: radial-gradient(
       1200px 600px at 80% -10%,
@@ -58,6 +63,8 @@ code {
 .site-content {
   position: relative;
   z-index: 1;
+  max-width: 100%;
+  overflow-x: clip;
   padding-bottom: calc(var(--dock-h) + var(--safe-bottom) + 32px);
 }
 
@@ -66,24 +73,52 @@ code {
   margin-inline: auto;
 }
 
+.site-header-inner {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.social-nav {
+  inset-inline: 0;
+  bottom: 0;
+  top: auto;
+  padding-inline: 0.75rem;
+  padding-bottom: max(12px, var(--safe-bottom));
+}
+
 .social-dock {
-  background: rgba(18, 24, 32, 0.92);
-  border: 1px solid rgba(44, 54, 68, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 0.7rem 0.85rem;
+  box-sizing: border-box;
+  /* Solid color only — background-image can hide backdrop-filter. */
+  background-color: rgba(243, 239, 230, 0.18);
+  background-image: none;
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 999px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  box-shadow:
+    0 10px 36px rgba(0, 0, 0, 0.38),
+    inset 0 1px 1px rgba(255, 255, 255, 0.42),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(48px) saturate(2.1);
+  -webkit-backdrop-filter: blur(48px) saturate(2.1);
 }
 
 .social-link {
   display: flex;
+  flex: 0 0 auto;
   align-items: center;
   justify-content: center;
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 999px;
-  border: 1px solid #2c3644;
-  background: #1a222d;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(26, 34, 45, 0.55);
   color: #f3efe6;
   transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
@@ -138,6 +173,18 @@ code {
   background: rgba(24, 119, 242, 0.16);
 }
 
+@media (max-width: 379px) {
+  .social-dock {
+    gap: 0.3rem;
+    padding: 0.55rem 0.6rem;
+  }
+
+  .social-link {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
 @media (min-width: 768px) {
   .site-content {
     padding-left: var(--dock-clearance);
@@ -155,15 +202,46 @@ code {
     );
   }
 
+  /* Center with inset + auto margins — avoid transform, which breaks backdrop-filter. */
+  .social-nav {
+    inset: 0 auto 0 var(--dock-inset);
+    padding: 0;
+    height: max-content;
+    margin-block: auto;
+  }
+
   .social-dock {
-    background: rgba(18, 24, 32, 0.38);
-    border: 1px solid rgba(243, 239, 230, 0.16);
+    width: auto;
+    max-width: none;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 1.15rem 0.8rem;
+    background-color: rgba(243, 239, 230, 0.16);
+    background-image: none;
+    border: 1px solid rgba(255, 255, 255, 0.38);
     border-radius: 1.5rem;
     box-shadow:
-      0 10px 40px rgba(0, 0, 0, 0.28),
-      inset 0 1px 0 rgba(243, 239, 230, 0.1);
-    backdrop-filter: blur(24px) saturate(1.35);
-    -webkit-backdrop-filter: blur(24px) saturate(1.35);
+      0 12px 40px rgba(0, 0, 0, 0.32),
+      inset 0 1px 1px rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(56px) saturate(2.25);
+    -webkit-backdrop-filter: blur(56px) saturate(2.25);
+  }
+}
+
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
+  .social-dock {
+    background: rgba(18, 24, 32, 0.92);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .social-dock {
+    background: rgba(18, 24, 32, 0.94);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
   }
 }
 
