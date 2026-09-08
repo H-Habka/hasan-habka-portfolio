@@ -38,7 +38,7 @@ const HeroSection = () => {
           </div>
         </div>
 
-        <div className="order-1 md:order-none relative mx-auto w-full max-w-[380px] flex items-center justify-center">
+        <div className="order-1 md:order-none relative mx-auto w-full max-w-[380px] flex items-center justify-center overflow-hidden">
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-10 rounded-full bg-copper/15 blur-3xl"
