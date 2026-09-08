@@ -1,5 +1,5 @@
 import React from "react"
-import TextSplitter from "../TextSpletter"
+import SectionHeading from "../SectionHeading"
 import Tags from "./Tags"
 import PhotoGallery from "../../content/projects/photoGallery"
 import YoutubeVideoRenderer from "./youtubeVideoRenderer"
@@ -12,23 +12,22 @@ const ProjectContentRenderer = ({
   videos,
 }) => {
   return (
-    <div className=" md:px-[10vw] pt-10 md:min-h-screen flex flex-col justify-center">
-      <div className="bg-[#23232388] text-white rounded-md md:px-8 px-6 py-10">
-        <div className=" md:max-w-[50%]">
-          <div className="flex items-center justify-between">
-            <div className="md:text-[100px] text-[60px] font-bold">
-              <TextSplitter containerClassName="justify-start" text={title} />
-            </div>
-          </div>
-          <div className="flex flex-col gap-4">
+    <section className="pt-28 pb-12 md:pt-32 md:pb-16">
+      <div className="section-shell">
+        <div className="rounded-[2rem] border border-line bg-surface/80 px-6 py-10 md:px-12 md:py-14 text-ivory">
+          <SectionHeading
+            eyebrow="Project"
+            title={title}
+            titleClassName="text-5xl md:text-7xl"
+          />
+          <div className="mt-8 flex flex-col gap-4 max-w-3xl">
             {descriptionBlocks?.map((description, idx) => {
               return (
                 <p
                   key={`${title}-desc-${idx}`}
-                  className="text-[20px]"
-                  data-aos="fade-right"
-                  data-aos-delay={500 + idx * 300}
-                  data-aos-duration="800"
+                  className="text-base md:text-lg text-ivory/80 leading-8"
+                  data-aos="fade-up"
+                  data-aos-delay={80 + idx * 80}
                 >
                   {description}
                 </p>
@@ -38,41 +37,44 @@ const ProjectContentRenderer = ({
           <div className="mt-8">
             <Tags keywords={tags} />
           </div>
-        </div>
-        {photoGallery?.map(
-          ({ photoGalleryTitle, strokeWordsArray, images }) => {
+          {photoGallery?.map(({ photoGalleryTitle, images }) => {
             return (
-              <div key={photoGalleryTitle} className="mt-20">
-                <div className="mb-6 text-white text-[32px] font-bold tracking-wide  md:text-[80px] flex justify-center">
-                  <TextSplitter
-                    strokeWordsArray={strokeWordsArray}
-                    text={photoGalleryTitle}
-                  />
-                </div>
+              <div key={photoGalleryTitle} className="mt-16">
+                <SectionHeading
+                  as="h3"
+                  title={photoGalleryTitle
+                    .toLowerCase()
+                    .replace(/\b\w/g, (letter) => letter.toUpperCase())}
+                  titleClassName="text-3xl md:text-5xl"
+                  className="mb-6 items-center text-center"
+                />
                 <div data-aos="zoom-in-up">
                   <PhotoGallery images={images} />
                 </div>
               </div>
             )
-          }
-        )}
-        {videos?.map(({ title, videoId, strokeWordsArray }) => {
-          return (
-            <div key={videoId || title} className="mt-20">
-              <div className="mb-6 text-white text-[32px] font-bold tracking-wide  md:text-[80px] flex justify-center ">
-                <TextSplitter
-                  strokeWordsArray={strokeWordsArray}
-                  text={title}
+          })}
+          {videos?.map(({ title: videoTitle, videoId }) => {
+            return (
+              <div key={videoId || videoTitle} className="mt-16">
+                <SectionHeading
+                  as="h3"
+                  title={videoTitle}
+                  titleClassName="text-3xl md:text-5xl"
+                  className="mb-6 items-center text-center"
                 />
+                <div
+                  data-aos="zoom-in-up"
+                  className="h-[calc(9/16*100vw)] md:h-[70vh] rounded-2xl overflow-hidden border border-line"
+                >
+                  <YoutubeVideoRenderer videoId={videoId} title={videoTitle} />
+                </div>
               </div>
-              <div data-aos="zoom-in-up" className="h-[calc(9/16*100vw)] md:h-[80vh]">
-                <YoutubeVideoRenderer videoId={videoId} title={title} />
-              </div>
-            </div>
-          )
-        })}
+            )
+          })}
+        </div>
       </div>
-    </div>
+    </section>
   )
 }
 

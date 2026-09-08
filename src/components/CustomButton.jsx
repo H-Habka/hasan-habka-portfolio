@@ -1,13 +1,30 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
-const CustomButton = ({ title, reversed, href, className = "", ...rest }) => {
+const CustomButton = ({
+  title,
+  reversed,
+  href,
+  to,
+  className = "",
+  ...rest
+}) => {
   const reversedStyles =
-    "bg-white text-two before:bg-two after:bg-two hover:text-white"
+    "bg-transparent text-ivory border-ivory/30 hover:border-copper hover:text-copper"
   const normalStyles =
-    "bg-two text-white before:bg-white hover:text-two after:bg-white"
-  const classes = `${
+    "bg-copper text-ink border-copper hover:bg-glow hover:border-glow"
+
+  const classes = `inline-flex items-center justify-center text-[13px] md:text-sm font-semibold tracking-[0.14em] uppercase px-5 py-3 rounded-full border transition-colors duration-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-copper ${
     reversed ? reversedStyles : normalStyles
-  } inline-flex items-center justify-center text-lg font-semibold m-2 px-4 py-2 border-2 border-two transition-all before:h-0 before:absolute duration-700 before:w-full relative before:left-0 before:top-0 before:-z-1 z-1 after:h-0 after:absolute after:w-full after:left-0 after:bottom-0 after:-z-1 before:transition-all before:duration-700 after:transition-all after:duration-700 hover:before:h-1/2 hover:after:h-1/2 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-four ${className}`
+  } ${className}`
+
+  if (to) {
+    return (
+      <Link to={to} className={classes} {...rest}>
+        <span>{title}</span>
+      </Link>
+    )
+  }
 
   if (href) {
     return (

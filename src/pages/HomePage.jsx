@@ -11,13 +11,13 @@ const GetInTouchSection = lazy(() => import("../components/GetInTouchSection"))
 
 export default function HomePage() {
   return (
-    <>
+    <main>
       <HeroSection />
       <AboutMeSection />
       <SoftwareExperience />
-      <WorkSection isSticky title="LATEST WORK" />
+      <WorkSection title="Latest work" />
       <CompaniesIworkedWith />
       <GetInTouchSection />
-    </>
+    </main>
   )
 }
