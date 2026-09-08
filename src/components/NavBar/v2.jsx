@@ -21,9 +21,9 @@ const NavbarV2 = () => {
   }
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 md:pl-[72px]">
+    <header className="site-header fixed top-0 left-0 right-0 z-50">
       <div className="bg-ink/80 backdrop-blur-md border-b border-line">
-        <div className="section-shell h-[72px] flex items-center justify-between gap-4 md:pl-4">
+        <div className="section-shell site-header-inner h-[72px] flex items-center justify-between gap-4">
           <Link
             to="/"
             aria-label="Home"

@@ -8,6 +8,11 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --dock-h: 72px;
   --nav-h: 72px;
+  /* Desktop floating dock: inset + rail + gap so header/content never collide. */
+  --dock-inset: 20px;
+  --dock-rail-w: 68px;
+  --dock-gap: 24px;
+  --dock-clearance: calc(var(--dock-inset) + var(--dock-rail-w) + var(--dock-gap));
 }
 
 html {
@@ -56,16 +61,110 @@ code {
   padding-bottom: calc(var(--dock-h) + var(--safe-bottom) + 32px);
 }
 
-@media (min-width: 768px) {
-  .site-content {
-    padding-left: 72px;
-    padding-bottom: 0;
-  }
-}
-
 .section-shell {
   width: min(1120px, calc(100% - 2rem));
   margin-inline: auto;
+}
+
+.social-dock {
+  background: rgba(18, 24, 32, 0.92);
+  border: 1px solid rgba(44, 54, 68, 0.9);
+  border-radius: 999px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid #2c3644;
+  background: #1a222d;
+  color: #f3efe6;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.social-link--email:hover,
+.social-link--email:focus-visible {
+  color: #e07a3d;
+  border-color: rgba(224, 122, 61, 0.55);
+  background: rgba(224, 122, 61, 0.14);
+}
+
+.social-link--whatsapp:hover,
+.social-link--whatsapp:focus-visible {
+  color: #25d366;
+  border-color: rgba(37, 211, 102, 0.55);
+  background: rgba(37, 211, 102, 0.14);
+}
+
+.social-link--linkedin:hover,
+.social-link--linkedin:focus-visible {
+  color: #0a66c2;
+  border-color: rgba(10, 102, 194, 0.55);
+  background: rgba(10, 102, 194, 0.16);
+}
+
+.social-link--instagram:hover,
+.social-link--instagram:focus-visible {
+  color: #e1306c;
+  border-color: rgba(225, 48, 108, 0.55);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 133, 41, 0.22),
+    rgba(221, 42, 123, 0.2),
+    rgba(129, 52, 175, 0.22)
+  );
+}
+
+.social-link--instagram:hover svg,
+.social-link--instagram:focus-visible svg {
+  fill: url(#ig-brand);
+}
+
+.social-link--facebook:hover,
+.social-link--facebook:focus-visible {
+  color: #1877f2;
+  border-color: rgba(24, 119, 242, 0.55);
+  background: rgba(24, 119, 242, 0.16);
+}
+
+@media (min-width: 768px) {
+  .site-content {
+    padding-left: var(--dock-clearance);
+    padding-bottom: 0;
+  }
+
+  /* Header bar stays full-bleed; only the logo/nav shift past the dock. */
+  .site-header-inner {
+    padding-left: max(
+      0px,
+      calc(
+        var(--dock-clearance) -
+          (100vw - min(1120px, calc(100vw - 2rem))) / 2
+      )
+    );
+  }
+
+  .social-dock {
+    background: rgba(18, 24, 32, 0.38);
+    border: 1px solid rgba(243, 239, 230, 0.16);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 10px 40px rgba(0, 0, 0, 0.28),
+      inset 0 1px 0 rgba(243, 239, 230, 0.1);
+    backdrop-filter: blur(24px) saturate(1.35);
+    -webkit-backdrop-filter: blur(24px) saturate(1.35);
+  }
 }
 
 .image-gallery {
