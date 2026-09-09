@@ -37,6 +37,7 @@ export default function ScrollExperience() {
     const refresh = () => ScrollTrigger.refresh()
     const refreshTimer = window.setTimeout(refresh, 400)
     window.addEventListener("load", refresh)
+    document.fonts?.ready?.then(refresh)
 
     return () => {
       window.clearTimeout(refreshTimer)
@@ -45,7 +46,6 @@ export default function ScrollExperience() {
       lenis.destroy()
       if (window.__lenis === lenis) window.__lenis = null
       document.documentElement.classList.remove("lenis-active")
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
     }
   }, [reduced])
 

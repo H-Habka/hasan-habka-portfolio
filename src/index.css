@@ -8,24 +8,31 @@
   --safe-bottom: env(safe-area-inset-bottom, 0px);
   --dock-h: 72px;
   --nav-h: 72px;
-  /* Desktop floating dock: inset + rail + gap so header/content never collide. */
-  --dock-inset: 20px;
-  --dock-rail-w: 76px;
-  --dock-gap: 24px;
+  /* Desktop floating icons: inset + hit-target + gap so header/copy never collide. */
+  --dock-inset: 16px;
+  --dock-rail-w: 44px;
+  --dock-gap: 20px;
   --dock-clearance: calc(var(--dock-inset) + var(--dock-rail-w) + var(--dock-gap));
 }
 
 html {
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-h) + 12px);
+  /* Pair clip + scroll so overflow-y does not compute to auto (nested scroller
+     breaks GSAP ScrollTrigger pin). */
   overflow-x: clip;
+  overflow-y: scroll;
   max-width: 100%;
+}
+
+html.lenis-active {
+  scroll-behavior: auto;
 }
 
 body {
   margin: 0;
   max-width: 100%;
-  overflow-x: clip;
+  overflow: visible;
   background: #24262b;
   color: #f3efe6;
   font-family: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
@@ -54,7 +61,8 @@ code {
   position: relative;
   z-index: 1;
   max-width: 100%;
-  overflow-x: clip;
+  /* Visible so ScrollTrigger pin is not trapped in an overflow container. */
+  overflow: visible;
   padding-bottom: calc(var(--dock-h) + var(--safe-bottom) + 32px);
 }
 
@@ -113,6 +121,8 @@ code {
 }
 
 .social-dock {
+  position: relative;
+  isolation: isolate;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,22 +130,53 @@ code {
   width: max-content;
   max-width: 100%;
   margin-inline: auto;
-  padding: 0.7rem 0.85rem;
+  padding: 0.7rem 0.95rem;
   box-sizing: border-box;
-  /* Solid color only — background-image can hide backdrop-filter. */
-  background-color: rgba(243, 239, 230, 0.18);
+  overflow: hidden;
+  /* Keep fill as a color — background-image can hide backdrop-filter. */
+  background-color: rgba(255, 255, 255, 0.1);
   background-image: none;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.52);
   border-radius: 999px;
   box-shadow:
-    0 10px 36px rgba(0, 0, 0, 0.38),
-    inset 0 1px 1px rgba(255, 255, 255, 0.42),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(48px) saturate(2.1);
-  -webkit-backdrop-filter: blur(48px) saturate(2.1);
+    0 14px 44px rgba(0, 0, 0, 0.46),
+    0 0 0 1px rgba(255, 255, 255, 0.14),
+    inset 0 1px 1px rgba(255, 255, 255, 0.62),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(72px) saturate(2.55) brightness(1.16);
+  -webkit-backdrop-filter: blur(72px) saturate(2.55) brightness(1.16);
+}
+
+.social-dock::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.12) 36%,
+    transparent 68%
+  );
+}
+
+.social-dock::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: 0;
+  box-shadow:
+    inset 0 0 24px rgba(255, 255, 255, 0.16),
+    inset 0 -18px 28px rgba(10, 14, 20, 0.12);
 }
 
 .social-link {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex: 0 0 auto;
   align-items: center;
@@ -143,10 +184,11 @@ code {
   width: 2.75rem;
   height: 2.75rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(26, 34, 45, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(26, 34, 45, 0.42);
   color: #f3efe6;
-  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease,
+    background-image 0.2s ease;
 }
 
 .social-link:focus-visible {
@@ -240,18 +282,29 @@ code {
     width: auto;
     max-width: none;
     flex-direction: column;
-    gap: 0.75rem;
-    padding: 1.15rem 0.8rem;
-    background-color: rgba(243, 239, 230, 0.16);
+    gap: 0.95rem;
+    padding: 0;
+    overflow: visible;
+    isolation: auto;
+    background: transparent;
+    background-color: transparent;
     background-image: none;
-    border: 1px solid rgba(255, 255, 255, 0.38);
-    border-radius: 1.5rem;
-    box-shadow:
-      0 12px 40px rgba(0, 0, 0, 0.32),
-      inset 0 1px 1px rgba(255, 255, 255, 0.4),
-      inset 0 -1px 0 rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(56px) saturate(2.25);
-    -webkit-backdrop-filter: blur(56px) saturate(2.25);
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .social-dock::before,
+  .social-dock::after {
+    content: none;
+    display: none;
+  }
+
+  .social-link {
+    background: transparent;
+    border-color: transparent;
   }
 }
 
@@ -261,6 +314,12 @@ code {
   .social-dock {
     background: rgba(18, 24, 32, 0.92);
   }
+
+  @media (min-width: 768px) {
+    .social-dock {
+      background: transparent;
+    }
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {
@@ -268,6 +327,17 @@ code {
     background: rgba(18, 24, 32, 0.94);
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
+  }
+
+  .social-dock::before,
+  .social-dock::after {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    .social-dock {
+      background: transparent;
+    }
   }
 }
 
@@ -290,6 +360,16 @@ code {
   margin-bottom: -100svh;
   pointer-events: none;
   z-index: 0;
+}
+
+@media (min-width: 768px) {
+  /* Full viewport width: undo .site-content dock inset so the canvas sits
+     under the floating icons instead of shrinking beside them. */
+  .scene-backdrop {
+    width: calc(100% + var(--dock-clearance));
+    max-width: none;
+    margin-left: calc(-1 * var(--dock-clearance));
+  }
 }
 
 .scene-backdrop,
@@ -400,8 +480,39 @@ code {
   }
 }
 
+.process-viewport {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+
+.process-viewport::-webkit-scrollbar {
+  display: none;
+}
+
+.process-track {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  will-change: transform;
+}
+
 .process-card {
   flex: 0 0 min(360px, 82vw);
+  scroll-snap-align: start;
+}
+
+@media (min-width: 768px) {
+  .process-viewport {
+    overflow: hidden;
+    scroll-snap-type: none;
+  }
+
+  .process-card {
+    scroll-snap-align: unset;
+  }
 }
 
 .keel-meter {
